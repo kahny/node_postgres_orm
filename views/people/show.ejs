@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+  </head>
+  <div class="whitebox">
+    <body>
+  
+      <p> <%= person.firstname %> <%= person.lastname %> <%= person.id %></p>	
+      <!-- Figure out the edit button  -->
+    <form action="/people/<%=person.id%>/edit">
+      <button>Edit</button> 
+    </form>
+    <!-- figure out the delete button -->
+    <form action="/people/<%= person.id %>?_method=delete" method="post">
+      <button>Delete</button>
+    </form>
+    <a href="/people">Back to the people page</a>
+    </body>
+  </div>
+</html>
+

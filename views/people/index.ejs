@@ -1,9 +1,26 @@
 <!doctype html>
 <html>
   <head>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    People Index
-
+    <div class="whitebox">
+      <h3>People</h3>
+      <% people.forEach(function(person){ %>
+      	<li>
+      		<a href="/people/<%= person.id %>">
+      		  <%= person.firstname %>
+        		<%= person.lastname %>
+        		<%= person.id %>
+      		</a>
+      	</li>
+      <% }) %>
+      <br><br>
+      <form action="/addToQueue" >
+      	<a href="/people/new">Add a new person</a>
+      </form>
+      <br>
+      <a href="/">Back Home</a>
+    </div>  
   </body>
 </html>

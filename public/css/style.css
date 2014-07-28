@@ -1,0 +1,54 @@
+body {
+    /*background-color: rgb(253,231,11);*/
+    background-color: rgb(237,237,237);
+    background: url(img/crowd.jpg)repeat center center fixed  ;
+    /*source : https://dribbble.com/shots/1082252-Happy-White-People?list=searches&offset=18;*/
+}
+
+h1 {
+	
+	font-size:60px;
+    text-align: center;
+    font-family: 'Bitter', serif;
+}
+
+p {
+    font-family: "Times New Roman";
+    font-size: 20px;
+}
+
+.whitebox {
+	background-color: white; 
+	height: 200px; 
+	width: 200px; 
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+}
+
+.button-link {
+    padding: 10px 15px;
+    background: #4479BA;
+    color: #FFF;
+    text-decoration: none; 	
+}
+
+.button-link:hover, .button-link:focus {
+    background: #356094;
+    border: solid 1px #2A4E77; 
+    text-decoration: none;
+}
+
+/*
+a:hover {
+    color: #FF00FF;
+}
+
+a { 
+	text-decoration: none;
+
+
+}*/
+/*a:visited { */
+	/*color:black		;*/
+/*}*/

@@ -1,8 +1,22 @@
 <!doctype html>
 <html>
   <head>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-
-  </body>
+    <div class= "whitebox">
+      <h3>Edit a new person</h3>
+    	<p> ID = <%= person.id %> : <%= person.firstname %> <%= person.lastname %></p><br>
+      <form method="post" action="/people/:id?_method=put">
+        <input type="text" value="<%= person.firstname %>" name="firstName">
+        <input type="text" value="<%= person.lastname %>" name="lastName"><br>
+        <!-- look into the hidden input-->
+        <input type="hidden" value="<%=person.id%>" name='id'>
+        <input type="submit" value="Save Changes">
+      </form>
+      <form action="/people">
+        <button>Cancel</button>
+      </form>
+    </div>
+</body>
 </html>

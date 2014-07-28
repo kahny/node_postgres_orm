@@ -1,6 +1,6 @@
 var db = require('./db');
 
-function Person(params) {
+function Person(params) {    //constructor function 
   this.firstname = params.firstname;
   this.lastname = params.lastname;
   this.id = params.id;
@@ -8,29 +8,63 @@ function Person(params) {
 
 
 Person.all = function(callback){
-  db.query("YOUR QUERY HERE",[], function(err, res){
+  // console.log("Person.all()")
+  db.query("SELECT * FROM people",[], function(err, res){
     var allPeople = [];
-    // do something here with res
+    // console.log("res.rows:");
+    // console.log(res.rows);
+
+    res.rows.forEach(function(personRow) {
+      // console.log("personRow")
+      // console.log(personRow)
+      allPeople.push(new Person(personRow));
+    });
     callback(err, allPeople);
   });
 }
 
+
 Person.findBy = function(key, val, callback) {
-  db.query("",[val], function(err, res){
+
+  db.query("SELECT * FROM people WHERE " + key + "=$1", [val], function(err, res){
     var foundRow, foundPerson;
     // do something here with res
+    //console.log("Response", res);
+    var personRow = res.rows[0]
+    // console.log(res.rows[0])
+    foundPerson = new Person(personRow);
+    // console.log('foundPerson')
+    // console.log(foundPerson)
     callback(err, foundPerson);
   });
 };
 
 
-
 Person.create = function(params, callback){
-  db.query("", [params.firstname, params.lastname], function(err, res){
+  db.query("INSERT INTO people (firstname, lastname) VALUES($1, $2)", [params.firstname, params.lastname], function(err, res){
     var createdRow, newPerson;
+    // console.log(res.rows[0 ]); //this won't return anything useful 
+
+      newPerson = new Person({firstname: params.firstname, lastname: params.lastname});
+      console.log(params.firstname);
+      console.log(params.lastname);
+      console.log(newPerson);
+
+  
     callback(err, newPerson);
   });
 };
+
+
+
+Person.prototype.destroy = function(callback){
+  db.query("DELETE FROM people WHERE id=$1", [this.id], function(err, res) {
+    callback(err)
+  });
+}
+
+
+
 
 Person.prototype.update = function(params, callback) {
   var colNames = [];
@@ -64,10 +98,6 @@ Person.prototype.update = function(params, callback) {
   });
 }
 
-Person.prototype.destroy = function(){
-  db.query("", [this.id], function(err, res) {
-    callback(err)
-  });
-}
+
 
 module.exports = Person;

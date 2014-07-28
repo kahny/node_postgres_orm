@@ -13,5 +13,7 @@ CREATE TABLE IF NOT EXISTS people (
 
 
 \d+ people
-\q
 
+INSERT INTO people (firstname, lastname) VALUES ('bob', 'doe');
+INSERT INTO people (firstname, lastname) VALUES ('joe', 'dilly');
+INSERT INTO people (firstname, lastname) VALUES ('jane', 'cat');
